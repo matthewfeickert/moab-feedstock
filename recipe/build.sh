@@ -18,8 +18,18 @@ if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
     # Help discovery of MPI headers/libs without executing target wrappers.
     export MPI_CFLAGS="-I${PREFIX}/include ${MPI_CFLAGS}"
     export MPI_LIBS="-L${PREFIX}/lib -lmpi ${MPI_LIBS}"
-    # Ensure -lmpi is available when linking MPI test programs.
-    export LIBS="${LIBS} -lmpi"
+
+    # Determine the correct Fortran MPI bindings library name.
+    # MPICH uses libmpifort and OpenMPI uses libmpi_mpifh.
+    if [[ "$mpi" == "openmpi" ]]; then
+      MPI_FORT_LIB="-lmpi_mpifh"
+    else
+      MPI_FORT_LIB="-lmpifort"
+    fi
+
+    # Ensure the Fortran MPI bindings and libmpi are available when linking MPI test programs
+    export LIBS="${LIBS} ${MPI_FORT_LIB} -lmpi"
+
     # Make sure pkg-config can find mpi.pc (if provided by the MPI package).
     export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
   else
@@ -42,7 +52,7 @@ autoreconf -fi
 
 make -j "${CPU_COUNT}"
 
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
   # If TempestRemap is enabled, run only a curated subset of tests to avoid timeouts.
   if [[ -n "$tempest" && "$tempest" != "notempest" ]]; then
     echo "[conda-forge] TempestRemap enabled: running a selected subset of tests."

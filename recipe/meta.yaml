@@ -57,6 +57,8 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
     - openssh  # [mpi == 'openmpi']
+    - pkg-config
+    - gnuconfig
   host:
     # eigen v5.x requires at least c++14 support
     - eigen 3.*

@@ -2,6 +2,9 @@
 set -e
 set -x
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
+
 export CONFIGURE_ARGS="--with-eigen3=${PREFIX}/include/eigen3 --disable-static --enable-shared ${CONFIGURE_ARGS}"
 
 if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then

@@ -3,6 +3,7 @@ set -e
 set -x
 
 # Get an updated config.sub and config.guess
+# c.f. https://conda-forge.org/docs/how-to/advanced/cross-compilation/#autotools
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 export CONFIGURE_ARGS="--with-eigen3=${PREFIX}/include/eigen3 --disable-static --enable-shared ${CONFIGURE_ARGS}"
@@ -26,6 +27,8 @@ if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
     # MPICH uses libmpifort and OpenMPI uses libmpi_mpifh.
     if [[ "$mpi" == "openmpi" ]]; then
       MPI_FORT_LIB="-lmpi_mpifh"
+      # c.f. https://conda-forge.org/docs/how-to/advanced/cross-compilation/#mpi
+      export OPAL_PREFIX="$PREFIX"
     else
       MPI_FORT_LIB="-lmpifort"
     fi

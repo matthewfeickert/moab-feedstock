@@ -59,6 +59,7 @@ requirements:
     - openssh  # [mpi == 'openmpi']
     - pkg-config
     - gnuconfig
+    - {{ mpi }}  # [build_platform != target_platform and mpi == "openmpi"]
   host:
     # eigen v5.x requires at least c++14 support
     - eigen 3.*

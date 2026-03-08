@@ -67,6 +67,8 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
     echo "[conda-forge] Cross-compilation with emulator detected: applying QEMU workarounds."
     # Disable HDF5 file locking — fcntl(F_SETLK) is unreliable under QEMU user-mode.
     export HDF5_USE_FILE_LOCKING=FALSE
+    # Enable core dumps so segfaults produce actionable backtraces.
+    ulimit -c unlimited 2>/dev/null || true
   fi
 
   # If TempestRemap is enabled, run only a curated subset of tests to avoid timeouts.

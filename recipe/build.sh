@@ -8,7 +8,7 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 export CONFIGURE_ARGS="--with-eigen3=${PREFIX}/include/eigen3 --disable-static --enable-shared ${CONFIGURE_ARGS}"
 
-if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
+if [[ -n "${mpi}" && "${mpi}" != "nompi" ]]; then
   if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" ]]; then
     # In cross builds, do NOT use target mpicc/mpic++ (can't execute on build machine).
     # Use the cross C/C++ compilers provided by conda-forge toolchain and supply MPI flags.
@@ -25,7 +25,7 @@ if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
 
     # Determine the correct Fortran MPI bindings library name.
     # MPICH uses libmpifort and OpenMPI uses libmpi_mpifh.
-    if [[ "$mpi" == "openmpi" ]]; then
+    if [[ "${mpi}" == "openmpi" ]]; then
       MPI_FORT_LIB="-lmpi_mpifh"
       # c.f. https://conda-forge.org/docs/how-to/advanced/cross-compilation/#mpi
       export OPAL_PREFIX="$PREFIX"
@@ -43,7 +43,7 @@ if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
   fi
 fi
 
-if [[ -n "$tempest" && "$tempest" != "notempest" ]]; then
+if [[ -n "${tempest}" && "${tempest}" != "notempest" ]]; then
   export CONFIGURE_ARGS="--with-tempestremap=${PREFIX} --with-netcdf=${PREFIX} --enable-mbtempest ${CONFIGURE_ARGS}"
 fi
 
@@ -60,7 +60,7 @@ make -j "${CPU_COUNT}"
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
   # If TempestRemap is enabled, run only a curated subset of tests to avoid timeouts.
-  if [[ -n "$tempest" && "$tempest" != "notempest" ]]; then
+  if [[ -n "${tempest}" && "${tempest}" != "notempest" ]]; then
     echo "[conda-forge] TempestRemap enabled: running a selected subset of tests."
 
     # Helper: check if a test target is defined in the given directory's Makefile
@@ -95,7 +95,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
     done
 
     PARALLEL_ENABLED=()
-    if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
+    if [[ -n "${mpi}" && "${mpi}" != "nompi" ]]; then
       for t in "${COMMON_PARALLEL_TESTS[@]}"; do
         # Skip Fortran-only test when Fortran is disabled in this recipe
         if [[ "${t}" == "imoab_coupler_fortran" ]]; then
@@ -124,7 +124,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
       make -C test/parallel SUBDIRS=. check TESTS="${PARALLEL_ENABLED[*]}" \
         || { [[ -f test/parallel/test-suite.log ]] && cat test/parallel/test-suite.log; exit 1; }
     else
-      if [[ -n "$mpi" && "$mpi" != "nompi" ]]; then
+      if [[ -n "${mpi}" && "${mpi}" != "nompi" ]]; then
         echo "[conda-forge] No selected parallel tests were built; skipping test/parallel/"
       else
         echo "[conda-forge] MPI disabled: skipping parallel test subset."

@@ -59,6 +59,16 @@ autoreconf -fi
 make -j "${CPU_COUNT}"
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+
+  # When running tests under QEMU emulation, apply workarounds for known
+  # QEMU user-mode limitations with HDF5/MPI I/O.
+  # c.f. https://github.com/conda-forge/moab-feedstock/pull/111
+  if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" && "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+    echo "[conda-forge] Cross-compilation with emulator detected: applying QEMU workarounds."
+    # Disable HDF5 file locking — fcntl(F_SETLK) is unreliable under QEMU user-mode.
+    export HDF5_USE_FILE_LOCKING=FALSE
+  fi
+
   # If TempestRemap is enabled, run only a curated subset of tests to avoid timeouts.
   if [[ -n "${tempest}" && "${tempest}" != "notempest" ]]; then
     echo "[conda-forge] TempestRemap enabled: running a selected subset of tests."

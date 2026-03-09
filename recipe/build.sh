@@ -59,6 +59,10 @@ autoreconf -fi
 make -j "${CPU_COUNT}"
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+  echo test/.libs/imoab_remapping
+  test/.libs/imoab_remapping
+  echo $?
+  echo Done with test/.libs/imoab_remapping
 
   # When running tests under QEMU emulation, apply workarounds for known
   # QEMU user-mode limitations with HDF5/MPI I/O.

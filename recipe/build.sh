@@ -143,7 +143,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
     fi
 
     echo test/.libs/imoab_remapping
-    test/.libs/imoab_remapping
+    LD_LIBRARY_PATH=./src/.libs/ test/.libs/imoab_remapping
     echo $?
     echo Done with test/.libs/imoab_remapping
   else

@@ -59,6 +59,7 @@ autoreconf -fi
 make -j "${CPU_COUNT}"
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+
   # When running tests under QEMU emulation, apply workarounds for known
   # QEMU user-mode limitations with HDF5/MPI I/O.
   # c.f. https://github.com/conda-forge/moab-feedstock/pull/111
@@ -124,7 +125,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
       # Prevent recursive check into subdirectories (like test/io) to avoid
       # Automake trying to create logs for tests not defined there.
       make -C test SUBDIRS=. check TESTS="${SERIAL_ENABLED[*]}" \
-        || { [[ -f test/test-suite.log ]] && cat test/test-suite.log; }
+        || { [[ -f test/test-suite.log ]] && cat test/test-suite.log; exit 1; }
     else
       echo "[conda-forge] No selected serial tests were built; skipping test/"
     fi
@@ -133,7 +134,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
     if [[ ${#PARALLEL_ENABLED[@]} -gt 0 ]]; then
       echo "[conda-forge] Running parallel tests: ${PARALLEL_ENABLED[*]}"
       make -C test/parallel SUBDIRS=. check TESTS="${PARALLEL_ENABLED[*]}" \
-        || { [[ -f test/parallel/test-suite.log ]] && cat test/parallel/test-suite.log; }
+        || { [[ -f test/parallel/test-suite.log ]] && cat test/parallel/test-suite.log; exit 1; }
     else
       if [[ -n "${mpi}" && "${mpi}" != "nompi" ]]; then
         echo "[conda-forge] No selected parallel tests were built; skipping test/parallel/"
@@ -141,11 +142,6 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:
         echo "[conda-forge] MPI disabled: skipping parallel test subset."
       fi
     fi
-
-    echo test/.libs/imoab_remapping
-    LD_LIBRARY_PATH=./src/.libs/ test/.libs/imoab_remapping
-    echo $?
-    echo Done with test/.libs/imoab_remapping
   else
     # TempestRemap not enabled: run the full suite
     make check \

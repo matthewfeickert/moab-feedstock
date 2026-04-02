@@ -8,102 +8,126 @@ jobs:
     vmImage: $(VMIMAGE)
   strategy:
     matrix:
-      osx_64_hdf51.14.6mpimpichtempestnotempest:
-        CONFIG: osx_64_hdf51.14.6mpimpichtempestnotempest
+      osx_64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempestnotempest:
+        CONFIG: osx_64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf51.14.6mpimpichtempesttempest:
-        CONFIG: osx_64_hdf51.14.6mpimpichtempesttempest
+        store_build_artifacts: false
+      osx_64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempesttempest:
+        CONFIG: osx_64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf51.14.6mpinompitempestnotempest:
-        CONFIG: osx_64_hdf51.14.6mpinompitempestnotempest
+        store_build_artifacts: false
+      osx_64_hdf51.14.6mpinompimpi_prefixnompitempestnotempest:
+        CONFIG: osx_64_hdf51.14.6mpinompimpi_prefixnompitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf51.14.6mpinompitempesttempest:
-        CONFIG: osx_64_hdf51.14.6mpinompitempesttempest
+        store_build_artifacts: false
+      osx_64_hdf51.14.6mpinompimpi_prefixnompitempesttempest:
+        CONFIG: osx_64_hdf51.14.6mpinompimpi_prefixnompitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf51.14.6mpiopenmpitempestnotempest:
-        CONFIG: osx_64_hdf51.14.6mpiopenmpitempestnotempest
+        store_build_artifacts: false
+      osx_64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempestnotempest:
+        CONFIG: osx_64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf51.14.6mpiopenmpitempesttempest:
-        CONFIG: osx_64_hdf51.14.6mpiopenmpitempesttempest
+        store_build_artifacts: false
+      osx_64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempesttempest:
+        CONFIG: osx_64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpimpichtempestnotempest:
-        CONFIG: osx_64_hdf52mpimpichtempestnotempest
+        store_build_artifacts: false
+      osx_64_hdf52mpimpichmpi_prefixmpi_mpichtempestnotempest:
+        CONFIG: osx_64_hdf52mpimpichmpi_prefixmpi_mpichtempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpimpichtempesttempest:
-        CONFIG: osx_64_hdf52mpimpichtempesttempest
+        store_build_artifacts: false
+      osx_64_hdf52mpimpichmpi_prefixmpi_mpichtempesttempest:
+        CONFIG: osx_64_hdf52mpimpichmpi_prefixmpi_mpichtempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpinompitempestnotempest:
-        CONFIG: osx_64_hdf52mpinompitempestnotempest
+        store_build_artifacts: false
+      osx_64_hdf52mpinompimpi_prefixnompitempestnotempest:
+        CONFIG: osx_64_hdf52mpinompimpi_prefixnompitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpinompitempesttempest:
-        CONFIG: osx_64_hdf52mpinompitempesttempest
+        store_build_artifacts: false
+      osx_64_hdf52mpinompimpi_prefixnompitempesttempest:
+        CONFIG: osx_64_hdf52mpinompimpi_prefixnompitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpiopenmpitempestnotempest:
-        CONFIG: osx_64_hdf52mpiopenmpitempestnotempest
+        store_build_artifacts: false
+      osx_64_hdf52mpiopenmpimpi_prefixmpi_openmpitempestnotempest:
+        CONFIG: osx_64_hdf52mpiopenmpimpi_prefixmpi_openmpitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_64_hdf52mpiopenmpitempesttempest:
-        CONFIG: osx_64_hdf52mpiopenmpitempesttempest
+        store_build_artifacts: false
+      osx_64_hdf52mpiopenmpimpi_prefixmpi_openmpitempesttempest:
+        CONFIG: osx_64_hdf52mpiopenmpimpi_prefixmpi_openmpitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-      osx_arm64_hdf51.14.6mpimpichtempestnotempest:
-        CONFIG: osx_arm64_hdf51.14.6mpimpichtempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempestnotempest:
+        CONFIG: osx_arm64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf51.14.6mpimpichtempesttempest:
-        CONFIG: osx_arm64_hdf51.14.6mpimpichtempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempesttempest:
+        CONFIG: osx_arm64_hdf51.14.6mpimpichmpi_prefixmpi_mpichtempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf51.14.6mpinompitempestnotempest:
-        CONFIG: osx_arm64_hdf51.14.6mpinompitempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpinompimpi_prefixnompitempestnotempest:
+        CONFIG: osx_arm64_hdf51.14.6mpinompimpi_prefixnompitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf51.14.6mpinompitempesttempest:
-        CONFIG: osx_arm64_hdf51.14.6mpinompitempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpinompimpi_prefixnompitempesttempest:
+        CONFIG: osx_arm64_hdf51.14.6mpinompimpi_prefixnompitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf51.14.6mpiopenmpitempestnotempest:
-        CONFIG: osx_arm64_hdf51.14.6mpiopenmpitempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempestnotempest:
+        CONFIG: osx_arm64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf51.14.6mpiopenmpitempesttempest:
-        CONFIG: osx_arm64_hdf51.14.6mpiopenmpitempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempesttempest:
+        CONFIG: osx_arm64_hdf51.14.6mpiopenmpimpi_prefixmpi_openmpitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpimpichtempestnotempest:
-        CONFIG: osx_arm64_hdf52mpimpichtempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpimpichmpi_prefixmpi_mpichtempestnotempest:
+        CONFIG: osx_arm64_hdf52mpimpichmpi_prefixmpi_mpichtempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpimpichtempesttempest:
-        CONFIG: osx_arm64_hdf52mpimpichtempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpimpichmpi_prefixmpi_mpichtempesttempest:
+        CONFIG: osx_arm64_hdf52mpimpichmpi_prefixmpi_mpichtempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpinompitempestnotempest:
-        CONFIG: osx_arm64_hdf52mpinompitempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpinompimpi_prefixnompitempestnotempest:
+        CONFIG: osx_arm64_hdf52mpinompimpi_prefixnompitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpinompitempesttempest:
-        CONFIG: osx_arm64_hdf52mpinompitempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpinompimpi_prefixnompitempesttempest:
+        CONFIG: osx_arm64_hdf52mpinompimpi_prefixnompitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpiopenmpitempestnotempest:
-        CONFIG: osx_arm64_hdf52mpiopenmpitempestnotempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpiopenmpimpi_prefixmpi_openmpitempestnotempest:
+        CONFIG: osx_arm64_hdf52mpiopenmpimpi_prefixmpi_openmpitempestnotempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
-      osx_arm64_hdf52mpiopenmpitempesttempest:
-        CONFIG: osx_arm64_hdf52mpiopenmpitempesttempest
+        store_build_artifacts: false
+      osx_arm64_hdf52mpiopenmpimpi_prefixmpi_openmpitempesttempest:
+        CONFIG: osx_arm64_hdf52mpiopenmpimpi_prefixmpi_openmpitempesttempest
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15-arm64
+        store_build_artifacts: false
   timeoutInMinutes: 360
   variables: {}
 

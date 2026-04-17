@@ -28,7 +28,7 @@ if [[ -n "${mpi}" && "${mpi}" != "nompi" ]]; then
 fi
 
 if [[ -n "${tempest}" && "${tempest}" != "notempest" ]]; then
-  export CONFIGURE_ARGS="--with-tempestremap=${PREFIX} --with-netcdf=${PREFIX} --enable-mbtempest ${CONFIGURE_ARGS}"
+  export CONFIGURE_ARGS="--with-tempestremap=${PREFIX} --with-netcdf=${PREFIX} --with-pnetcdf=${PREFIX} --enable-mbtempest ${CONFIGURE_ARGS}"
 fi
 
 autoreconf -fi
